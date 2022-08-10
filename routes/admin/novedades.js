@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var novedadesModel= require('../../models/novedadesModel')
+var novedadesModel= require('./../../models/novedadesModel')
 
 
 /* GET home page. */
