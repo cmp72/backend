@@ -15,7 +15,7 @@ router.get('/', async function(req, res, next) {
   });
 });
 
-router.get ('/agregar', (req, res, next) =>{
+router.get ('/agregar', (req, res, next) => {
   res.render('/admin/agregar', {
     layout: 'admin/layout'
   })//Cierra render
