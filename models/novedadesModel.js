@@ -18,5 +18,12 @@ async function insertNovedad(obj){
 
     }
 }
+//cierra inserNovedad
 
-module.exports= {getNovedades, insertNovedad}
+async function deleteNovedadesById(id){
+    var query= "delete from novedades where id = ?";
+    var rows= await pool.query(query, [id]);
+    return rows;
+}
+
+module.exports= {getNovedades, insertNovedad, deleteNovedadesById}
