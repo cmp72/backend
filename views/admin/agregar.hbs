@@ -2,16 +2,16 @@
     <div class="row">
         <div class="col-6 offset-3">
             <h4>Nueva novedad</h4>
-            <form action="admin/novedades/agregar" method="post">//quite barra lateral de admin
-                <div class="mb-3 row">
+            <form action="/admin/novedades/agregar" method="post">//quite barra lateral de admin
+                <div class="form-group">
                     <input type="text" class="form-control" placeholder="Titulo" name="titulo">
 
                 </div>
-                <div class="mb-3 row">
+                <div class="form-group">
                     <textarea type="text" class="form-control" placeholder="Subtitulo" name="subtitulo"></textarea>
 
                 </div>
-                <div class="mb-3 row">
+                <div class="form-group">
                     <textarea type="text" class="form-control" placeholder="Cuerpo" name="cuerpo"></textarea>
 
                 </div>
@@ -25,3 +25,6 @@
     </div>
 
 </div>
+{{#if error}}
+<h5>{{message}}</h5>
+{{/if}}

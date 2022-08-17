@@ -9,7 +9,7 @@ async function getNovedades(){
 } 
 async function insertNovedad(obj){
     try{
-        var query= "insert into novedades set ?";
+        var query= "insert into novedades set ? ";
         var rows= await pool.query(query, [obj]);
         return rows;
     } catch (error){
@@ -18,7 +18,7 @@ async function insertNovedad(obj){
 
     }
 }
-//cierra inserNovedad
+//cierra insertNovedad
 
 async function deleteNovedadesById(id){
     var query= "delete from novedades where id = ?";
