@@ -50,9 +50,12 @@ router.get('/eliminar/:id', async (req, res, next) => {
   res.redirect('/admin/novedades');
 })//Cierra get de eliminar
 
+//Listar modificar una sola novedad by id
 router.get('/modificar/:id', async (req, res, next) => {
-  let id = req.params.id;
-  let novedad = await novedadesModel.getNovedadById(id);
+  var id = req.params.id;
+  console.log(req.params.id)
+  var novedad = await novedadesModel.getNovedadById(id);
+  console.log(req.params.id);
   res.render('admin/modificar', {
     layout: 'admin/layout',
     novedad
