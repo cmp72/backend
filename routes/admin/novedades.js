@@ -18,9 +18,9 @@ router.get('/', async function (req, res, next) {
 router.get('/agregar', (req, res, next) => {
   res.render('admin/agregar', {
     layout: 'admin/layout'
-  })//Cierra render
+  });//Cierra render
 
-})//Cierra get
+});//Cierra get
 
 router.post('/agregar', async (req, res, next) => {
   try {
@@ -53,15 +53,14 @@ router.get('/eliminar/:id', async (req, res, next) => {
 //Listar modificar una sola novedad by id
 router.get('/modificar/:id', async (req, res, next) => {
   var id = req.params.id;
-  console.log(req.params.id)
   var novedad = await novedadesModel.getNovedadById(id);
+
   console.log(req.params.id);
   res.render('admin/modificar', {
     layout: 'admin/layout',
     novedad
-  })
-
-})
+  });
+});
 router.post('/modificar', async (req, res, next) => {
   try {
     let obj = {
