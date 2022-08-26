@@ -1,6 +1,9 @@
 var express = require('express');
 var router = express.Router();
-var novedadesModel = require('./../../models/novedadesModel')//quizas quitar ./
+var novedadesModel = require('./../../models/novedadesModel');//quizas quitar ./
+var util= require('util');
+var cloudinary= require('cloudinary').v2;
+const uploader=  util.promisify(cloudinary.uploader.upload);
 
 
 /* GET home page. */
@@ -24,8 +27,19 @@ router.get('/agregar', (req, res, next) => {
 
 router.post('/agregar', async (req, res, next) => {
   try {
+    var img_id= '';
+    //console.log(req.files.imagen);
+    if(req.files && Object.keys(req.files).length>0){
+      imagen= req.files.imagen;
+      img_id= (await uploader(imagen.tempFilePath)).public_id;
+    }
+
+
     if (req.body.titulo != "" && req.body.subtitulo != "" && req.body.cuerpo != "") {
-      await novedadesModel.insertNovedad(req.body);
+      await novedadesModel.insertNovedad({
+        ...req.body,
+        img_id
+      });
       res.redirect('/admin/novedades')
     } else {
       res.render('admin/agregar', {
