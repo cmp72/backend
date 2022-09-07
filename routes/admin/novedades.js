@@ -38,7 +38,7 @@ router.get('/', async function (req, res, next) {
     persona: req.session.nombre,
     novedades
   });
-});
+});//fin router.get '/'
 
 router.get('/agregar', (req, res, next) => {
   res.render('admin/agregar', {
@@ -50,7 +50,7 @@ router.get('/agregar', (req, res, next) => {
 router.post('/agregar', async (req, res, next) => {
   try {
     var img_id = '';
-    //console.log(req.files.imagen);
+    console.log(req.files.imagen);
     if (req.files && Object.Keys(req.files).length > 0) {
       imagen = req.files.imagen;
       img_id = (await uploader(imagen.tempFilePath)).public_id;
