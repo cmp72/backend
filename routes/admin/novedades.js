@@ -1,8 +1,8 @@
 var express = require('express');
 var router = express.Router();
 var novedadesModel = require('./../../models/novedadesModel');//quizas quitar ./
-var util = require('util');
-var cloudinary = require('cloudinary').v2;
+const util = require('util');
+const cloudinary = require('cloudinary').v2;
 const uploader = util.promisify(cloudinary.uploader.upload);
 const destroy = util.promisify(cloudinary.uploader.destroy);
 
@@ -15,8 +15,8 @@ router.get('/', async function (req, res, next) {
   novedades = novedades.map(novedad => {
     if (novedad.img_id) {
       const imagen = cloudinary.image(novedad.img_id, {
-        width: 100,
-        heigth: 100,
+        width: 70,
+        heigth: 70,
         crop: 'fill'
 
       });
@@ -51,11 +51,10 @@ router.post('/agregar', async (req, res, next) => {
   try {
     var img_id = '';
     console.log(req.files.imagen);
-    if (req.files && Object.Keys(req.files).length > 0) {
+    if (req.files && Object.keys(req.files).length > 0) {
       imagen = req.files.imagen;
       img_id = (await uploader(imagen.tempFilePath)).public_id;
     }
-
 
     if (req.body.titulo != "" && req.body.subtitulo != "" && req.body.cuerpo != "") {
       await novedadesModel.insertNovedad({
@@ -82,8 +81,8 @@ router.post('/agregar', async (req, res, next) => {
 //Para eliminar una novedad
 router.get('/eliminar/:id', async (req, res, next) => {
   var id = req.params.id;
-  let novedad= await novedadesModel.getNovedadById(id);
-  if(novedad.img_id){
+  let novedad = await novedadesModel.getNovedadById(id);
+  if (novedad.img_id) {
     await (destroy(novedad.img_id));
   }
   await novedadesModel.deleteNovedadesById(id);
@@ -111,7 +110,7 @@ router.post('/modificar', async (req, res, next) => {
     } else {
       if (req.files && Object.keys(req.files).length > 0) {
         imagen = req.files.image;
-        imagen.id = (await uploader(imagen.tempFilePath)).public_id;
+        img_id = (await uploader(imagen.tempFilePath)).public_id;
         borrar_img_vieja = true;
       }
     }
@@ -130,7 +129,7 @@ router.post('/modificar', async (req, res, next) => {
     console.log(error)
     res.render('admin/modificar', {
       layout: 'admin/layout',
-      error: true, 
+      error: true,
       message: 'No se modifico la novedad'
     })
   }

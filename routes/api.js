@@ -35,7 +35,7 @@ router.post('/contacto', async (req, res) =>{
         to: 'cmp-72@hotmail.com',
         subject: 'Contacto web',
         html: `${req.body.nombre} se contacto a través de la web y quiere más información a este correo: 
-        ${req.body.email}
+        ${req.body.email} <br> Además hizo el siguiente comentario: $(req.body.mensaje)
         <br> Su teléfono es: ${req.body.telefono}`
     }
     const transport= nodemailer.createTransport({
