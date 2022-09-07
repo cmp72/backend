@@ -118,7 +118,7 @@ router.post('/modificar', async (req, res, next) => {
     if (borrar_img_vieja && req.body.img_original) {
       await (destroy(req.body.img_original));
     }
-    let obj = {
+    var obj = {
       titulo: req.body.titulo,
       subtitulo: req.body.subtitulo,
       cuerpo: req.body.cuerpo,
@@ -130,7 +130,8 @@ router.post('/modificar', async (req, res, next) => {
     console.log(error)
     res.render('admin/modificar', {
       layout: 'admin/layout',
-      error: true, message: 'No se modifico la novedad'
+      error: true, 
+      message: 'No se modifico la novedad'
     })
   }
 })

@@ -1,4 +1,4 @@
-<div class="container" style="margin:100px auto">
+<div class="container" style="margin:100px 0">
     <div class="row">
         <div class="col-6 offset-3">
             <h4>Modificar novedad</h4>
@@ -37,12 +37,10 @@
                 <button type="submit " class="btn btn-primary">Modificar</button>
 
             </form>
+            {{#if error}}
+            <h5>{{message}}</h5>
+            {{/if}}
 
         </div>
     </div>
 </div>
-
-
-{{#if error}}
-<h5>{{message}}</h5>
-{{/if}}

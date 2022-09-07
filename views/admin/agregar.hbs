@@ -22,12 +22,13 @@
                 </div>
                 <button type="submit " class="btn btn-primary">Guardar</button>
             </form>
+            
+            {{#if error}}
+            <h5>{{message}}</h5>
+            {{/if}}
 
         </div>
 
     </div>
 
 </div>
-{{#if error}}
-<h5>{{message}}</h5>
-{{/if}}
